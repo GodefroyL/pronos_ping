@@ -6,8 +6,11 @@ readme = "README.md"
 authors = [
     { name = "GodefroyL", email = "godefroy.lecluse@gmail.com" }
 ]
-requires-python = ">=3.15"
-dependencies = []
+requires-python = ">=3.14"
+dependencies = [
+    "kivy>=2.3.2",
+    "kivymd>=2.0.0",
+]
 
 [project.scripts]
 pronos-ping = "pronos_ping:main"
