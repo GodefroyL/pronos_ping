@@ -1,0 +1,68 @@
+Accueil:
+  canvas:
+    Color:
+      rgba: 1, 1, 1, 1
+    Rectangle:
+      pos: self.pos
+      size: self.size
+
+  RelativeLayout:
+    size_hint: (1,0.2)
+    
+  BoxLayout:
+    orientation: 'vertical'
+    canvas.before:
+      Color:
+        rgba: 1,0,0,1
+      Rectangle: 
+        pos: self.pos
+        size: self.size
+
+    BoxLayout:
+      orientation: 'horizontal'
+      Button:
+        text: 'Règle'
+        on_press: root.manager.current = 'regles'
+      Button: 
+        text: 'Paramètre'
+        on_press: root.manager.current = 'paramrtres'
+    
+    BoxLayout:
+      orientation: 'horizontal'
+      Button:
+        text: 'ligue'
+        on_press: app.aller(screen_name='ligue', direction='left')
+      Label:
+        text: 'accueil'
+      Button:
+        text: 'classement'
+        on_press: app.aller(screen_name='classement', direction='right')
+
+    BoxLayout:
+      orientation: 'horizontal'
+      Label:
+        text: 'Championnat :'    
+      Spinner:
+        text: 'Champions de Montpelier'
+        values: ['Champions de Montpelier','Champions de Frankfort', 'China smash', 'WTT Finals']
+        on_text: print(f"option choisie : {self.text}")
+          
+    BoxLayout:
+      orientation: 'horizontal'
+      Label:
+        text: 'Tour :'    
+      Spinner:
+        text: 'Quart de finale'
+        values: ['Quart de finale', 'Demi finale', 'Finale']
+        on_text: print(f"option choisie : {self.text}")
+        
+
+    BoxLayout:
+      orientation: 'horizontal'
+      size_hint: (1,0.1)
+      Button:
+        text: 'bouton1'
+        on_press: app.test(1)
+      Button:
+        text: 'bouton2'
+        on_press: app.test(2)

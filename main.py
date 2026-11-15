@@ -4,12 +4,24 @@ from kivy.uix.screenmanager import Screen
 
 class App(MDApp):
     def build(self):
-        return Builder.load_file("interface.kv")
+        self.titre = "Mon App"
+        return Builder.load_file("kv/accueil.kv")
+
+    def aller(self, screen_name: str, direction: str = "left"):
+        self.root.transition.direction = direction
+        self.root.current = screen_name
+    
+    def test(self, par):
+        print(par)
+
 
 class Accueil(Screen):
-    pass
+    print("Accueil")
 
 class Parametres(Screen):
+    pass
+
+class Regles(Screen):
     pass
 
 class Connexion(Screen):
