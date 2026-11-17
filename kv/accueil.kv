@@ -1,68 +1,83 @@
-Accueil:
-  canvas:
-    Color:
-      rgba: 1, 1, 1, 1
-    Rectangle:
-      pos: self.pos
-      size: self.size
-
-  RelativeLayout:
-    size_hint: (1,0.2)
-    
-  BoxLayout:
-    orientation: 'vertical'
-    canvas.before:
-      Color:
-        rgba: 1,0,0,1
-      Rectangle: 
-        pos: self.pos
-        size: self.size
-
-    BoxLayout:
-      orientation: 'horizontal'
-      Button:
-        text: 'Règle'
-        on_press: root.manager.current = 'regles'
-      Button: 
-        text: 'Paramètre'
-        on_press: root.manager.current = 'paramrtres'
+<Accueil>:
+    id: accueil
+    name: 'accueil'
+    md_bg_color: 0,0,0,0
+    FitImage:
+        source: 'images/fond_ecran.jpeg'
     
     BoxLayout:
-      orientation: 'horizontal'
-      Button:
-        text: 'ligue'
-        on_press: app.aller(screen_name='ligue', direction='left')
-      Label:
-        text: 'accueil'
-      Button:
-        text: 'classement'
-        on_press: app.aller(screen_name='classement', direction='right')
+        orientation: 'vertical'
 
-    BoxLayout:
-      orientation: 'horizontal'
-      Label:
-        text: 'Championnat :'    
-      Spinner:
-        text: 'Champions de Montpelier'
-        values: ['Champions de Montpelier','Champions de Frankfort', 'China smash', 'WTT Finals']
-        on_text: print(f"option choisie : {self.text}")
-          
-    BoxLayout:
-      orientation: 'horizontal'
-      Label:
-        text: 'Tour :'    
-      Spinner:
-        text: 'Quart de finale'
-        values: ['Quart de finale', 'Demi finale', 'Finale']
-        on_text: print(f"option choisie : {self.text}")
-        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: (0.1)
 
-    BoxLayout:
-      orientation: 'horizontal'
-      size_hint: (1,0.1)
-      Button:
-        text: 'bouton1'
-        on_press: app.test(1)
-      Button:
-        text: 'bouton2'
-        on_press: app.test(2)
+            Label:
+                text: app.titre
+                pos: (0.7, 0.5)
+
+            MDIconButton:
+                size_hint: 0.1, 1
+                pos_hint: {"right": 0.7}
+                icon: 'book-settings'
+            
+                on_release: app.aller(page='regles', direction='up')
+            MDIconButton: 
+                size_hint: 0.1, 1
+                pos_hint: {"right": 0.9}
+                icon: 'cog'
+
+                on_release: app.aller(page='parametres', direction='up')
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: (0.1)
+            Button:
+                text: 'ligue'
+                on_press: app.aller(page='ligues',direction='left')
+            Label:
+                text: 'accueil'
+            Button:
+                text: 'classement'
+                on_press: app.aller(page='classements', direction='right')
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: (0.1)
+            Label:
+                text: 'Championnat :'    
+            Spinner:
+                id: championnat
+                text: 'Champions de Montpellier'
+                values: ['Champions de Montpellier','Champions de Frankfort', 'China smash', 'WTT Finals']
+                on_text: self.root.maj_donnee
+              
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: (0.1)
+            Label:
+                text: 'Tour :'    
+            Spinner:
+                id: tour
+                text: 'Quart de finale'
+                values: ['Tous', 'Quart de finale', 'Demi finale', 'Finale']
+                on_text: self.root.maj_donnee
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: (0.1)
+            Label:
+                text: 'Sexe :'
+            Spinner:
+                id: sexe
+                text: 'tous'
+                values: ['tous', 'f', 'h']
+                on_text: root.maj_donnee()
+
+        BoxLayout:
+            id: matchs
+            orientation: 'vertical'                
+
+        Label:
+            size_hint_y: (0.1)
+            text: 'pub'

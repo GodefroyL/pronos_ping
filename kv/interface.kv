@@ -1,18 +1,13 @@
-ScreenManager:
+#: import SlideTransition kivy.uix.screenmanager.SlideTransition
+MDScreenManager:
     id: screen_manager
-    Accueil:
-        id: accueil
-        name: "accueil"
-    Connexion:
-        name: "connexion"
-    Inscription:
-        name: "inscription"
-    Classements:
-        name: "classements"
-    Ligues:
-        name: "ligues"
-    Parametres:
-        name: "parametres"
-    Regle:
-        name: "regles"
+    transition:
+        SlideTransition(duration=0.5)
 
+    Accueil:
+    Connexion:
+    Inscription:
+    Classements:
+    Ligues:
+    Parametres:
+    Regles:
