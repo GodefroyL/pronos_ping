@@ -1,0 +1,142 @@
+<Matchs>:
+    orientation: 'horizontal'
+    size_hint_y: None
+    md_bg_color: [0, 0, 0, 0]
+    MDBoxLayout:
+        orientation: 'vertical'
+        size_hint_x: 0.46
+        PlayerButton:
+            id: joueur_1
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(46)
+            md_bg_color: [0.3, 0.3, 0.3, 0.7]
+            padding: dp(5), dp(3)
+            radius: [dp(8)]
+            on_release: root.parier(1)
+            Image:
+                id: drapeau_joueur_1
+                size_hint_x: None
+                width: '30dp'
+                source: ''
+            MDLabel:
+                id: nom_joueur_1
+                text_color: 1,1,1,1
+                theme_font_size: 'Custom'
+                font_size: '13sp'
+                text: ''
+                halign: 'center'
+                valign: 'middle'
+            FitImage:
+                id: photo_joueur_1
+                size_hint: None, None
+                size: dp(40), dp(40)
+                radius: [dp(10)]
+                source: ''
+        MDBoxLayout:
+            orientation: 'horizontal'
+            size_hint: None, None
+            size: dp(90), dp(32)
+            pos_hint: {'center_x': 0.5}
+            MDIconButton:
+                id: moins_joueur_1
+                icon: 'minus'
+                style: 'filled'
+                theme_bg_color: 'Custom'
+                md_bg_color: [0.9, 0, 0, 0.7]
+                theme_icon_color: 'Custom'
+                icon_color: [1,1,1,1]
+                size_hint: None, None
+                size: dp(30), dp(30)
+                radius: [dp(15)]
+                pos_hint: {'center_y': 0.5}
+                on_release: root.modifier_score(1, '-')
+            MDLabel:
+                id: score_joueur_1
+                text: '0'
+                halign: 'center'
+            MDIconButton:
+                id: plus_joueur_1
+                icon: 'plus'
+                style: 'filled'
+                theme_bg_color: 'Custom'
+                md_bg_color: [0,0.9,0,0.7]
+                theme_icon_color: 'Custom'
+                icon_color: [1, 1, 1, 1]
+                size_hint: None, None
+                size: dp(30), dp(30)
+                radius: [dp(15)]
+                pos_hint: {'center_y': 0.5}
+                on_release: root.modifier_score(1, '+')
+    MDLabel:
+        text: 'VS'
+        halign: 'center'
+        valign: 'middle'
+        size_hint_x: 0.08
+        valign: 'middle'
+    MDBoxLayout:
+        orientation: 'vertical'
+        size_hint_x: 0.46
+        PlayerButton:
+            id: joueur_2
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(46)
+            md_bg_color: [0.3, 0.3, 0.3, 0.7]
+            padding: dp(5), dp(3)
+            radius: [dp(8)]
+            on_release: root.parier(2)
+            Image:
+                id: drapeau_joueur_2
+                size_hint_x: None
+                width: '30dp'
+                source: ''
+            MDLabel:
+                id: nom_joueur_2
+                text_color: 1,1,1,1
+                theme_font_size: 'Custom'
+                font_size: '13sp'
+                text: ''
+                halign: 'center'
+                valign: 'middle'
+            FitImage:
+                id: photo_joueur_2
+                size_hint: None, None
+                size: dp(40), dp(40)
+                radius: [dp(10)]
+                source: ''
+        MDBoxLayout:
+            orientation: 'horizontal'
+            size_hint: None, None
+            size: dp(90), dp(32)
+            pos_hint: {'center_x': 0.5}
+            MDIconButton:
+                id: moins_joueur_2
+                icon: 'minus'
+                style: 'filled'
+                theme_bg_color: 'Custom'
+                md_bg_color: [0.9, 0, 0, 0.7]
+                theme_icon_color: 'Custom'
+                icon_color: [1, 1, 1, 1]
+                size_hint: None, None
+                size: dp(30), dp(30)
+                radius: [dp(15)]
+                pos_hint: {'center_y': 0.5}
+                on_release: root.modifier_score(2, '-')
+            MDLabel:
+                id: score_joueur_2
+                text: '0'
+                halign: 'center'
+            MDIconButton:
+                id: plus_joueur_2
+                icon: 'plus'
+                style: 'filled'
+                theme_bg_color: 'Custom'
+                md_bg_color: [0, 0.9, 0, 0.7]
+                theme_icon_color: 'Custom'
+                icon_color: [1, 1, 1, 1]
+                size_hint: None, None
+                size: dp(30), dp(30)
+                radius: [dp(15)]
+                pos_hint: {'center_y': 0.5}
+                on_release: root.modifier_score(2, '+')

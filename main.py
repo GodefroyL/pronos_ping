@@ -7,12 +7,22 @@ from kivymd.uix.button import MDIconButton
 from kivy.clock import Clock
 from kivymd.icon_definitions import md_icons
 
+from src.pronos_ping.matchs import Matchs
 
+
+DONNEES_1 = {
+    'Champions de Montpellier': {
+        'Quart de finale': {
+            'f': {1: (('Wang Manyu', 'chine'),('Hina Hayata', 'japon')), 2: (('Wang Yidi','chine'), ('Chen Xingtong', 'chine')), 3: (('Miwa Harimoto', 'japon'), ('Chen Yi', 'chine')), 4: (('Mima Ito','japon'),('Sun Yingsha', 'chine'))},
+            'h': {1: (('Sora Matsushima', 'japon'),('Lin Yun-Ju', 'taipei_chinois')), 2: (('Tomokazu Harimoto', 'japon'), ('Jang Woojin', 'coree_du_sud')), 3: (('Hugo Calderano', 'bresil'), ('Alexis Lebrun', 'france')), 4: (('Felix Lebrun', 'france'),('Truls Möregårdh', 'suede'))}
+        }
+    }
+}
 DONNEES = {
     'Champions de Montpellier': {
         'Quart de finale': {
-            'f': {1: ('Wang Manyu','Hina Hayata'), 2: ('Wang Yidi', 'Chen Xingtong'), 3: ('Miwa Harimoto', 'Chen Yi'), 4: ('Mima Ito','Sun Yingsha')},
-            'h': {1: ('Sora Matsushima','Lin Yun-Ju'), 2: ('Tomokazu Harimoto', 'Jang Woojin'), 3: ('Hugo Calderano', 'Alexis Lebrun'), 4: ('Felix Lebrun','Truls Möregårdh')}
+            'f': {1: (('Miwa Harimoto', 'japon'), ('Chen Yi', 'chine'))},
+            'h': {1: (('Felix Lebrun', 'france'),('Truls Möregårdh', 'suede'))}
         }
     }
 }
@@ -22,6 +32,7 @@ class App(MDApp):
         self.titre = "Pronos Ping"
         self.historique = []
 
+        Builder.load_file("kv/matchs.kv")
         Builder.load_file("kv/accueil.kv")
         Builder.load_file("kv/parametres.kv")
         Builder.load_file("kv/regles.kv")
@@ -42,9 +53,7 @@ class App(MDApp):
     def retour(self):
         if self.root and self.historique:
             self.root.current = self.historique.pop()
-    
-    def test(self, par):
-        print(par)
+
 
 
 class Accueil(MDScreen):
@@ -59,17 +68,15 @@ class Accueil(MDScreen):
         if sexe == 'tous':
             matchs = DONNEES[championnat][tour]['f']
             for i in range(len(matchs)):
-                self.ids.matchs.add_widget(MDLabel(text=f'{matchs[i+1][0]} VS {matchs[i+1][1]}',text_color=(1,1,1,1)))
+                self.ids.matchs.add_widget(Matchs(joueur_1=matchs[i+1][0][0], joueur_2=matchs[i+1][1][0], pays_1=matchs[i+1][0][1], pays_2=matchs[i+1][1][1], nombre_de_sets=3))
             matchs = DONNEES[championnat][tour]['h']
             for i in range(len(matchs)):
-                self.ids.matchs.add_widget(MDLabel(text=f'{matchs[i+1][0]} VS {matchs[i+1][1]}',text_color=(1,1,1,1)))
+                self.ids.matchs.add_widget(Matchs(joueur_1=matchs[i+1][0][0], joueur_2=matchs[i+1][1][0], pays_1=matchs[i+1][0][1], pays_2=matchs[i+1][1][1], nombre_de_sets=3))
         else:
             matchs = DONNEES[championnat][tour][sexe]
             for i in range(len(matchs)):
-                self.ids.matchs.add_widget(MDLabel(text=f'{matchs[i+1][0]} VS {matchs[i+1][1]}',text_color=(1,1,1,1)))
+                self.ids.matchs.add_widget(Matchs(joueur_1=matchs[i+1][0][0], joueur_2=matchs[i+1][1][0], pays_1=matchs[i+1][0][1], pays_2=matchs[i+1][1][1], nombre_de_sets=3))
 
-
-    print("Accueil")
 
 class Parametres(MDScreen):
     pass
