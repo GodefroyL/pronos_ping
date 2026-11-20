@@ -10,17 +10,17 @@ from kivymd.icon_definitions import md_icons
 from src.pronos_ping.matchs import Matchs
 
 
-DONNEES_1 = {
+DONNEES = {
     'Champions de Montpellier': {
-        'Quart de finale': {
-            'f': {1: (('Wang Manyu', 'chine'),('Hina Hayata', 'japon')), 2: (('Wang Yidi','chine'), ('Chen Xingtong', 'chine')), 3: (('Miwa Harimoto', 'japon'), ('Chen Yi', 'chine')), 4: (('Mima Ito','japon'),('Sun Yingsha', 'chine'))},
-            'h': {1: (('Sora Matsushima', 'japon'),('Lin Yun-Ju', 'taipei_chinois')), 2: (('Tomokazu Harimoto', 'japon'), ('Jang Woojin', 'coree_du_sud')), 3: (('Hugo Calderano', 'bresil'), ('Alexis Lebrun', 'france')), 4: (('Felix Lebrun', 'france'),('Truls Möregårdh', 'suede'))}
+        '1/4 finale': {
+            'f': {1: (('Wang Manyu', 'chine'),('Hina Hayata', 'japon'),{1:3,2:1,'etat': 'fini'}), 2: (('Wang Yidi','chine'), ('Chen Xingtong', 'chine'),{1:2,2:1,'etat': 'en cours'}), 3: (('Miwa Harimoto', 'japon'), ('Chen Yi', 'chine'),{1:0,2:0,'etat': 'prevu'}), 4: (('Mima Ito','japon'),('Sun Yingsha', 'chine'),{1:0,2:0,'etat': 'prevu'})},
+            'h': {1: (('Sora Matsushima', 'japon'),('Lin Yun-Ju', 'taipei_chinois'),{1:3,2:2,'etat': 'fini'}), 2: (('Tomokazu Harimoto', 'japon'), ('Jang Woojin', 'coree_du_sud'),{1:0,2:0,'etat': 'prevu'}), 3: (('Hugo Calderano', 'bresil'), ('Alexis Lebrun', 'france'),{1:0,2:0,'etat': 'prevu'}), 4: (('Felix Lebrun', 'france'),('Truls Möregårdh', 'suede'),{1:0,2:0,'etat': 'prevu'})}
         }
     }
 }
-DONNEES = {
+DONNEES_1 = {
     'Champions de Montpellier': {
-        'Quart de finale': {
+        '1/4 finale': {
             'f': {1: (('Miwa Harimoto', 'japon'), ('Chen Yi', 'chine'))},
             'h': {1: (('Felix Lebrun', 'france'),('Truls Möregårdh', 'suede'))}
         }
@@ -68,14 +68,32 @@ class Accueil(MDScreen):
         if sexe == 'tous':
             matchs = DONNEES[championnat][tour]['f']
             for i in range(len(matchs)):
-                self.ids.matchs.add_widget(Matchs(joueur_1=matchs[i+1][0][0], joueur_2=matchs[i+1][1][0], pays_1=matchs[i+1][0][1], pays_2=matchs[i+1][1][1], nombre_de_sets=3))
+                self.ids.matchs.add_widget(Matchs(
+                    joueur_1=matchs[i+1][0][0],
+                    joueur_2=matchs[i+1][1][0],
+                    pays_1=matchs[i+1][0][1],
+                    pays_2=matchs[i+1][1][1],
+                    nombre_de_sets=3,
+                    resultat=matchs[i+1][2]))
             matchs = DONNEES[championnat][tour]['h']
             for i in range(len(matchs)):
-                self.ids.matchs.add_widget(Matchs(joueur_1=matchs[i+1][0][0], joueur_2=matchs[i+1][1][0], pays_1=matchs[i+1][0][1], pays_2=matchs[i+1][1][1], nombre_de_sets=3))
+                self.ids.matchs.add_widget(Matchs(
+                    joueur_1=matchs[i+1][0][0],
+                    joueur_2=matchs[i+1][1][0],
+                    pays_1=matchs[i+1][0][1],
+                    pays_2=matchs[i+1][1][1],
+                    nombre_de_sets=3,
+                    resultat=matchs[i+1][2]))
         else:
             matchs = DONNEES[championnat][tour][sexe]
             for i in range(len(matchs)):
-                self.ids.matchs.add_widget(Matchs(joueur_1=matchs[i+1][0][0], joueur_2=matchs[i+1][1][0], pays_1=matchs[i+1][0][1], pays_2=matchs[i+1][1][1], nombre_de_sets=3))
+                self.ids.matchs.add_widget(Matchs(
+                    joueur_1=matchs[i+1][0][0],
+                    joueur_2=matchs[i+1][1][0],
+                    pays_1=matchs[i+1][0][1],
+                    pays_2=matchs[i+1][1][1],
+                    nombre_de_sets=3,
+                    resultat=matchs[i+1][2]))
 
 
 class Parametres(MDScreen):

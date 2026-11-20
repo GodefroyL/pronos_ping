@@ -4,14 +4,15 @@
     md_bg_color: 0,0,0,0
     FitImage:
         source: 'images/fond_ecran.jpeg'
-    
+
     BoxLayout:
         orientation: 'vertical'
         padding: dp(5)
+        spacing: dp(10)
 
         BoxLayout:
             orientation: 'horizontal'
-            size_hint_y: (0.1)
+            size_hint_y: (0.08)
 
             Label:
                 text: app.titre
@@ -21,9 +22,9 @@
                 size_hint: 0.1, 1
                 pos_hint: {"right": 0.7}
                 icon: 'book-settings'
-            
+
                 on_release: app.aller(page='regles', direction='up')
-            MDIconButton: 
+            MDIconButton:
                 size_hint: 0.1, 1
                 pos_hint: {"right": 0.9}
                 icon: 'cog'
@@ -32,7 +33,8 @@
 
         BoxLayout:
             orientation: 'horizontal'
-            size_hint_y: (0.1)
+            size_hint_y: None
+            height: dp(40)
             Button:
                 text: 'ligue'
                 on_press: app.aller(page='ligues',direction='left')
@@ -44,40 +46,108 @@
 
         BoxLayout:
             orientation: 'horizontal'
-            size_hint_y: (0.1)
+            size_hint_y: None
+            height: dp(40)
+            radius: [dp(10)]
+            canvas.before:
+                Color:
+                    rgba: 0.3, 0.3, 0.3, 0.7
+                Line:
+                    width: 1.2
+                    rectangle: self.x, self.y, self.width, self.height
             Label:
-                text: 'Championnat :'    
+                text: 'Championnat :'
             Spinner:
                 id: championnat
                 text: 'Champions de Montpellier'
                 values: ['Champions de Montpellier','Champions de Frankfort', 'China smash', 'WTT Finals']
+                text_size: self.width - dp(30), None
+                halign: 'left'
+                valign: 'middle'
+                padding_x: dp(16)
+                background_normal: ''
+                background_color: [0,0,0,0]
                 on_text: self.root.maj_donnee
-              
-        BoxLayout:
-            orientation: 'horizontal'
-            size_hint_y: (0.1)
-            Label:
-                text: 'Tour :'    
-            Spinner:
-                id: tour
-                text: 'Quart de finale'
-                values: ['Tous', 'Quart de finale', 'Demi finale', 'Finale']
-                on_text: self.root.maj_donnee
+                canvas.after:
+                    Color:
+                        rgba: 0.3, 0.3 ,0.3, 1
+                    Triangle:
+                        points:
+                            self.right - dp(30), self.center_y + dp(4), \
+                            self.right - dp(14), self.center_y + dp(4), \
+                            self.right - dp(22), self.center_y - dp(5)
 
         BoxLayout:
             orientation: 'horizontal'
-            size_hint_y: (0.1)
+            size_hint_y: None
+            height: dp(32)
+            radius: [dp(30)]
+            padding: dp(5)
+            canvas.before:
+                Color:
+                    rgba: 0.3, 0.3, 0.3, 0.7
+                Line:
+                    width: 1.2
+                    rectangle: self.x, self.y, self.width, self.height
             Label:
+                size_hint_x: 0.1
+                text: 'Tour :'
+            Spinner:
+                size_hint_x: 0.5
+                id: tour
+                text: '1/4 finale'
+                values: ['Tous', '1/4 finale', '1/2 finale', 'Finale']
+                text_size: self.width - dp(30), None
+                halign: 'left'
+                valign: 'middle'
+                padding_x: dp(16)
+                background_normal: ''
+                background_color: [0,0,0,0]
+                on_text: self.root.maj_donnee
+                canvas.after:
+                    Color:
+                        rgba: 0.3, 0.3 ,0.3, 1
+                    Triangle:
+                        points:
+                            self.right - dp(30), self.center_y + dp(4), \
+                            self.right - dp(14), self.center_y + dp(4), \
+                            self.right - dp(22), self.center_y - dp(5)
+
+            Label:
+                size_hint_x: 0.1
                 text: 'Sexe :'
             Spinner:
+                size_hint_x: 0.3
                 id: sexe
                 text: 'tous'
                 values: ['tous', 'f', 'h']
+                text_size: self.width - dp(20), None
+                halign: 'left'
+                valign: 'middle'
+                padding_x: dp(16)
+                background_normal: ''
+                background_color: [0,0,0,0]
                 on_text: root.maj_donnee()
+                canvas.after:
+                    Color:
+                        rgba: 0.3, 0.3 ,0.3, 1
+                    Triangle:
+                        points:
+                            self.right - dp(30), self.center_y + dp(4), \
+                            self.right - dp(14), self.center_y + dp(4), \
+                            self.right - dp(22), self.center_y - dp(5)
+        Widget:
+            size_hint_y: 0.02
 
-        BoxLayout:
-            id: matchs
-            orientation: 'vertical'                
+        ScrollView:
+            do_scroll_x: False
+            do_scroll_y: True
+            size_hint_y: 0.5
+
+            MDBoxLayout:
+                id: matchs
+                orientation: 'vertical'
+                adaptive_height: True
 
         Label:
             size_hint_y: (0.1)
