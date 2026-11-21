@@ -1,3 +1,4 @@
+from kivymd.uix.bottomsheet.bottomsheet import MDIconButton
 import json
 
 from kivy.factory import Factory
@@ -7,8 +8,10 @@ from kivymd.uix.boxlayout import MDBoxLayout
 
 class PlayerButton(ButtonBehavior, MDBoxLayout):
     pass
+class ScoreButton(MDIconButton):
+    pass
 
-
+Factory.register("ScoreButton", cls=ScoreButton)
 Factory.register("PlayerButton", cls=PlayerButton)
 
 class Matchs(MDBoxLayout):
@@ -52,7 +55,7 @@ class Matchs(MDBoxLayout):
             self.ids.moins_joueur_1.disabled = True
             self.ids.plus_joueur_1.disabled = True
             self.ids.moins_joueur_2.disabled = True
-            self.ids.plus_joueur_1.disabled = True
+            self.ids.plus_joueur_2.disabled = True
 
 
     def modifier_score_pari(self, joueur, operation):
