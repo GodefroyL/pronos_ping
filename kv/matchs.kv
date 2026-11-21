@@ -3,13 +3,13 @@
     size: dp(30), dp(30)
     radius: [dp(15)]
     pos_hint: {'center_y': 0.5}
-    opacity: 0.4 if self.disabled else 1
+    anchor_x: 'center'
+    anchor_y: 'center'
+    md_bg_color: self.couleur_desactivee if self.disabled else self.couleur
     MDIcon:
         icon: root.icon
-        halign: 'center'
-        valign: 'middle'
-        theme_text_color: 'Custom'
-        text_color: root.icon_color
+        icon_color: root.icon_color
+        icon_color_disabled: root.icon_color
 
 <Matchs>:
     orientation: 'horizontal'
@@ -64,7 +64,7 @@
             ScoreButton:
                 id: moins_joueur_1
                 icon: 'minus'
-                md_bg_color: [0.9, 0, 0, 0.7]
+                couleur: [0.9, 0, 0, 0.7]
                 on_release: root.modifier_score_pari(1, '-')
             MDBoxLayout:
                 radius: [dp(7)]
@@ -78,7 +78,7 @@
             ScoreButton:
                 id: plus_joueur_1
                 icon: 'plus'
-                md_bg_color: [0, 0.9, 0, 0.7]
+                couleur: [0, 0.9, 0, 0.7]
                 on_release: root.modifier_score_pari(1, '+')
 
 
@@ -152,7 +152,7 @@
             ScoreButton:
                 id: moins_joueur_2
                 icon: 'minus'
-                md_bg_color: [0.9, 0, 0, 0.7]
+                couleur: [0.9, 0, 0, 0.7]
                 on_release: root.modifier_score_pari(2, '-')
             MDBoxLayout:
                 radius: [dp(7)]
@@ -166,5 +166,5 @@
             ScoreButton:
                 id: plus_joueur_2
                 icon: 'plus'
-                md_bg_color: [0, 0.9, 0, 0.7]
+                couleur: [0, 0.9, 0, 0.7]
                 on_release: root.modifier_score_pari(2, '+')
