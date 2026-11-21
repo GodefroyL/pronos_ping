@@ -11,5 +11,6 @@ wheels/
 
 # Fichiers locaux
 drapeaux_supplementaires/
+donnee_test/
 schema_bdd.pptx
 ~$schema_bdd.pptx

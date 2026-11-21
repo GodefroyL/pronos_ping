@@ -13,11 +13,7 @@ class PlayerButton(ButtonBehavior, MDBoxLayout):
 
 class ScoreButton(ButtonBehavior, MDAnchorLayout):
     """Bouton +/- du score.
-
-    Basé sur MDAnchorLayout (fond en RoundedRectangle, icône centrée) et non
-    sur MDIconButton (SmoothRoundedRectangle) : avec une couleur de fond
-    translucide, le liseré d'antialiasing de Smooth* échappe à la découpe
-    du ScrollView.
+    Basé sur MDAnchorLayout (fond en RoundedRectangle, icône centrée) et non sur MDIconButton (SmoothRoundedRectangle) : avec une couleur de fond translucide, le liseré d'antialiasing de Smooth* échappe à la découpe du ScrollView.
     """
     icon = StringProperty("blank")
     icon_color = ColorProperty([1, 1, 1, 1])
