@@ -1,15 +1,24 @@
-from kivymd.uix.bottomsheet.bottomsheet import MDIconButton
 import json
 
 from kivy.factory import Factory
+from kivy.properties import ColorProperty, StringProperty
 from kivy.uix.behaviors import ButtonBehavior
 from kivymd.uix.boxlayout import MDBoxLayout
 
 
 class PlayerButton(ButtonBehavior, MDBoxLayout):
     pass
-class ScoreButton(MDIconButton):
-    pass
+
+
+class ScoreButton(ButtonBehavior, MDBoxLayout):
+    """Bouton +/- du score.
+
+    Basé sur MDBoxLayout (fond en RoundedRectangle) et non sur MDIconButton
+    (SmoothRoundedRectangle) : avec une couleur de fond translucide, le
+    liseré d'antialiasing de Smooth* échappe à la découpe du ScrollView.
+    """
+    icon = StringProperty("blank")
+    icon_color = ColorProperty([1, 1, 1, 1])
 
 Factory.register("ScoreButton", cls=ScoreButton)
 Factory.register("PlayerButton", cls=PlayerButton)
